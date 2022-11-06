@@ -4,6 +4,6 @@ service:
   - docker
 
 before_install: 
-  - docker build -t tae/docker-react -f Dockerfile.dev .
+  - docker build -t wacharin-stack/docker-react -f Dockerfile.dev .
 script: 
   - docker run -e CI=true wacharin-stack/docker-react npm run test
