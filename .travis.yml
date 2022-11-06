@@ -6,4 +6,4 @@ service:
 before_install: 
   - docker build -t tae/docker-react -f Dockerfile.dev .
 script: 
-  - docker run -e CI=true USERNAME/docker-react npm run test
+  - docker run -e CI=true tae/docker-react npm run test
