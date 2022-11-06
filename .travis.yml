@@ -1,20 +1,24 @@
-language: generic 
 sudo: required
-service:
+language: generic
+
+services:
   - docker
 
-before_install: 
+before_install:
   - docker build -t wacharin-stack/docker-react -f Dockerfile.dev .
-script: 
+
+script:
   - docker run -e CI=true wacharin-stack/docker-react npm run test
-deploy: 
+
+deploy:
   provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "docker"
-  nv: "Docker-env"
-  bucket_name: "elasticbeanstalk-us-east-1-822974034637"
-  bucket_path: "docker"
-  on
-    branch: master
+  region: 'us-east-1'
+  app: 'docker'
+  env: 'docker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-822974034637'
+  bucket_path: 'docker'
+  on:
+    branch: main
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: "$AWS_SECRET_KEY"
+  secret_access_key: $AWS_SECRET_KEY
+
